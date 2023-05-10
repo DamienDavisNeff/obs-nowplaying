@@ -66,6 +66,8 @@ nunit-*.xml
 *.vs
 ./.vscode
 ./obj
+.vscode
+obj
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
