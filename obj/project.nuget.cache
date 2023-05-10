@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "eyI9vLKhbdzsIbBVaAwnqq9PtIzsDS2WETPlEjuP7v0VPRGM3Jd3OZnCIsIfJjWdjEVX73bZaP53V7MpT7aIWg==",
+  "dgSpecHash": "l7puWbJyDlVSasS3+L6G/7TqKVxYfynhdHoACJyQlOEP+TlDrtIcaELoo6wMZk0E5qJ7TMxvVxBhCvFhtNgy0Q==",
   "success": true,
   "projectFilePath": "D:\\Default\\Documents\\GitHub\\Streaming Related Projects\\now-playing\\now-playing.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damie\\.nuget\\packages\\dubya.windowsmediacontroller\\2.4.0\\dubya.windowsmediacontroller.2.4.0.nupkg.sha512",
     "C:\\Users\\damie\\.nuget\\packages\\filelock\\1.0.0\\filelock.1.0.0.nupkg.sha512",
     "C:\\Users\\damie\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
+    "C:\\Users\\damie\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.17\\microsoft.netcore.app.runtime.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\damie\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.17\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.17.nupkg.sha512",
+    "C:\\Users\\damie\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.17\\microsoft.aspnetcore.app.runtime.win-x64.5.0.17.nupkg.sha512",
     "C:\\Users\\damie\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.22000.26\\microsoft.windows.sdk.net.ref.10.0.22000.26.nupkg.sha512"
   ],
   "logs": [
