@@ -37,4 +37,4 @@ This allows you to add a now playing area to your OBS scene.
     - This will be in the location as the `exe` from earlier
 
 ***
-**This is the barebones version, it does not yet have complete album art support, and documentaion is missing images
+**This is the barebones version, album art is still buggy, and documentaion is missing images
