@@ -16,6 +16,9 @@ namespace Sample.CMD
 
         public static void Main()
         {
+
+            Console.Title = "Now Playing";
+
             mediaManager = new MediaManager();
 
             mediaManager.OnAnySessionOpened += MediaManager_OnAnySessionOpened;
