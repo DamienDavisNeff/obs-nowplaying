@@ -64,9 +64,7 @@ nunit-*.xml
 
 # Visual Studio Code
 *.vs
-./.vscode
-./obj
-.vscode
+.vscode/
 obj
 
 # Build Results of an ATL Project
