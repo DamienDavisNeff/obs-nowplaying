@@ -3,9 +3,9 @@ using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.Media.Control;
 using WindowsMediaController;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using FileLock;
 
 namespace Sample.CMD
 {
@@ -55,9 +55,8 @@ namespace Sample.CMD
             WriteLineColor($"{sender.Id} is now playing {args.Title} {(String.IsNullOrEmpty(args.Artist) ? "" : $"by {args.Artist}")}", ConsoleColor.Cyan);
             SaveFileText($"{args.Title}","title");
             SaveFileText($"{args.Artist}","artist");
-            while(await IsFileLocked($"{Directory.GetCurrentDirectory()}\\album.png")) {
-                await Task.Delay(300);
-            }
+            cts.Cancel();
+            cts = new CancellationTokenSource();
             await RandomAccess_SaveImage(args.Thumbnail,"album",cts.Token);
         }
 
@@ -67,6 +66,7 @@ namespace Sample.CMD
             {
                 Console.ForegroundColor = color;
                 Console.WriteLine("[" + DateTime.Now.ToString("HH:mm:ss.fff") + "] " + toprint);
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
@@ -87,31 +87,70 @@ namespace Sample.CMD
 
                 WriteLineColor("[WARN] Image saving is a work-in-progress & is Debug Only",ConsoleColor.DarkYellow);
 
-                while(await IsFileLocked($"{Directory.GetCurrentDirectory()}\\{filename}.png")) {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                while(await IsFileLocked($"{Directory.GetCurrentDirectory()}\\{filename}.png") && stopwatch.Elapsed.TotalMilliseconds < 4000) {
                     await Task.Delay(300);
                 }
-                if(File.Exists($"{Directory.GetCurrentDirectory()}\\{filename}.png")) File.Delete($"{Directory.GetCurrentDirectory()}\\{filename}.png");
+                if(stopwatch.Elapsed.TotalMilliseconds >= 4000) {
+                    stopwatch.Stop();
+                    return;
+                }
+                stopwatch.Stop();
 
-                while(await IsFileLocked($"{Directory.GetCurrentDirectory()}\\{filename}.png")) {
-                    await Task.Delay(300);
+                if(File.Exists($"{Directory.GetCurrentDirectory()}\\{filename}.png")) {
+                    try {
+                        File.Delete($"{Directory.GetCurrentDirectory()}\\{filename}.png");
+                    } catch (IOException ex) {
+                        WriteLineColor($"[ERROR] {ex}",ConsoleColor.Red);
+                        cts.Cancel();
+                        cts = new CancellationTokenSource();
+                        return;
+                    }
                 }
 
-                if(streamReference == null) { 
-                    await SavePlaceholder($"https://via.placeholder.com/{140}",$"{Directory.GetCurrentDirectory()}\\{filename}.png");
+                stopwatch = new Stopwatch();
+                stopwatch.Start();
+                while(await IsFileLocked($"{Directory.GetCurrentDirectory()}\\{filename}.png") && stopwatch.Elapsed.TotalMilliseconds < 4000) {
+                    await Task.Delay(300);
+                }
+                if(+stopwatch.Elapsed.TotalMilliseconds >= 4000) {
+                    stopwatch.Stop();
+                    cts.Cancel();
+                    cts = new CancellationTokenSource();
+                    return;
+                }
+
+                if(streamReference == null) {
+                    try {
+                        await SavePlaceholder($"https://via.placeholder.com/{140}",$"{Directory.GetCurrentDirectory()}\\{filename}.png");
+                    } catch (IOException ex) {
+                        WriteLineColor($"[ERROR] {ex}",ConsoleColor.Red);
+                        cts.Cancel();
+                        cts = new CancellationTokenSource();
+                        return;
+                    }
                     break;
                 } else {
-                    using (var stream = await streamReference.OpenReadAsync()) {
-                        var decoder = await BitmapDecoder.CreateAsync(stream);
-                        var pixelData = await decoder.GetPixelDataAsync();
-                        var outputFile = new FileInfo($"{Directory.GetCurrentDirectory()}\\{filename}.png");
-                        using (var fileStream = outputFile.Open(FileMode.Create))
-                        {
-                            var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream.AsRandomAccessStream());
-                            encoder.SetPixelData(decoder.BitmapPixelFormat, decoder.BitmapAlphaMode, decoder.PixelWidth, decoder.PixelHeight, decoder.DpiX, decoder.DpiY, pixelData.DetachPixelData());
-                            await encoder.FlushAsync();
-                            await fileStream.FlushAsync();
+                    try {
+                        using (var stream = await streamReference.OpenReadAsync()) {
+                            var decoder = await BitmapDecoder.CreateAsync(stream);
+                            var pixelData = await decoder.GetPixelDataAsync();
+                            var outputFile = new FileInfo($"{Directory.GetCurrentDirectory()}\\{filename}.png");
+                            using (var fileStream = outputFile.Open(FileMode.Create)) {
+                                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, fileStream.AsRandomAccessStream());
+                                encoder.SetPixelData(decoder.BitmapPixelFormat, decoder.BitmapAlphaMode, decoder.PixelWidth, decoder.PixelHeight, decoder.DpiX, decoder.DpiY, pixelData.DetachPixelData());
+                                await encoder.FlushAsync();
+                                await fileStream.FlushAsync();
+                            }
                         }
+                    } catch (IOException ex) {
+                        WriteLineColor($"[ERROR] {ex}",ConsoleColor.Red);
+                        cts.Cancel();
+                        cts = new CancellationTokenSource();
+                        return;
                     }
+                    
                 }
 
                 WriteLineColor("[COMPLETE] Image Save Complete", ConsoleColor.Green);

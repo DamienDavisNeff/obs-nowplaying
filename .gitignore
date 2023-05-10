@@ -8,6 +8,13 @@ title.txt
 album.png
 
 *.gitignore2
+*.ignore
+*.cache
+
+./publish
+# Fody files
+FodyWeavers.xml
+FodyWeavers.xsd
 
 # User-specific files
 *.rsuser
@@ -54,6 +61,11 @@ Generated\ Files/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Visual Studio Code
+*.vs
+./.vscode
+./obj
 
 # Build Results of an ATL Project
 [Dd]ebugPS/
