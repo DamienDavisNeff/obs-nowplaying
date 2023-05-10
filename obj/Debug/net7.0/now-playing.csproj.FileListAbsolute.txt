@@ -1,0 +1,1 @@
+D:\Default\Documents\GitHub\Streaming Related Projects\now-playing\obj\Debug\net7.0\now-playing.csproj.AssemblyReference.cache
