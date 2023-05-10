@@ -7,7 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
-    <OutputPath>D:\Default\Documents\GitHub\Builds\</OutputPath>
+    <!-- If you're building this project, change this path -->
+    <OutputPath>D:\Default\Documents\GitHub\Builds\$([System.DateTime]::Now.ToString("yyyy.MM.dd_HH.mm"))</OutputPath>
     <OutputType>Exe</OutputType>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <IncludeAllContentForSelfExtract>True</IncludeAllContentForSelfExtract>

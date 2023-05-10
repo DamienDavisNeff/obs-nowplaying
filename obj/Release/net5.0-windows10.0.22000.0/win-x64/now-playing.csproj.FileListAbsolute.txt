@@ -15,3 +15,9 @@ D:\Default\Documents\GitHub\Streaming Related Projects\now-playing\obj\Release\n
 D:\Default\Documents\GitHub\Streaming Related Projects\now-playing\obj\Release\net5.0-windows10.0.22000.0\win-x64\now-playing.pdb
 D:\Default\Documents\GitHub\Streaming Related Projects\now-playing\obj\Release\net5.0-windows10.0.22000.0\win-x64\now-playing.genruntimeconfig.cache
 D:\Default\Documents\GitHub\Streaming Related Projects\now-playing\obj\Release\net5.0-windows10.0.22000.0\win-x64\ref\now-playing.dll
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.exe
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.deps.json
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.runtimeconfig.json
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.runtimeconfig.dev.json
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.dll
+D:\Default\Documents\GitHub\Builds\2023.05.10_12.29\net5.0-windows10.0.22000.0\win-x64\now-playing.pdb
