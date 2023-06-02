@@ -1,11 +1,8 @@
-﻿using Windows.Storage;
-using Windows.Storage.Streams;
+﻿using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.Media.Control;
 using WindowsMediaController;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Sample.CMD
 {
@@ -16,6 +13,9 @@ namespace Sample.CMD
 
         public static void Main()
         {
+
+            Console.Title = "Now Playing";
+
             mediaManager = new MediaManager();
 
             mediaManager.OnAnySessionOpened += MediaManager_OnAnySessionOpened;
@@ -82,8 +82,6 @@ namespace Sample.CMD
         {
 
             while(!cancellationToken.IsCancellationRequested) {
-
-                WriteLineColor("[WARN] Skipping songs too quickly may cause the program to crash!",ConsoleColor.DarkRed);
 
                 WriteLineColor("[WARN] Image saving is a work-in-progress & is Debug Only",ConsoleColor.DarkYellow);
 
