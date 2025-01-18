@@ -1,3 +1,6 @@
+# ⚠️ THIS SOFTWARE IS VERY UNSTABLE, AND BROKEN MOST OF THE TIME. YOU HAVE BEEN WARNED.
+# ⚠️ Images are probably still broken in the README, I will not be fixing it. 
+
 # Now Playing for OBS
 
 This program uses <a href="https://github.com/DubyaDude/WindowsMediaController/" target="_blank">WindowsMediaController</a> to save the title, artist, and art of the song you are currently listening to as text/images, for use in OBS.
@@ -52,6 +55,3 @@ This allows you to add a now playing area to your OBS scene.
 
 <img alt="Opening the source properties for a image source" src="https://github.com/DamienDavisNeff/obs-nowplaying/assets/105996288/52fafe33-2f98-4f50-8d57-b9190b09ef8c" style="height:10vw">
 <img alt="Selecting browse in image properties" src="https://github.com/DamienDavisNeff/obs-nowplaying/assets/105996288/8265dca8-4826-457e-a8bd-c73d3a767d5d" style="height:10vw">
-
-***
-*imgs are currently broken in readme, as the repo is now public - working on fixing them*
